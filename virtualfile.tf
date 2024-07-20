@@ -194,11 +194,11 @@ resource "aws_network_acl_association" "db-subnet-nacl" {
 Web security group rule
 resource "aws_security_group" "koda_sg_web" {
   name        = "koda_sg_web"
-  description = "Allow TLS & HTTP traffic"
+  description = "Allow SSH & HTTP traffic"
   vpc_id      = aws_vpc.koda_vpc.id
 
   tags = {
-    Name = "koda-sg-web"
+    Name = "koda-sg-web-firewall"
   }
 }
 
