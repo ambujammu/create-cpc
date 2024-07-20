@@ -152,10 +152,10 @@ resource "aws_network_acl" "app_nacl" {
   }
 }
 
-# Subnet association to nacl-web
+# Subnet association to nacl-app
 resource "aws_network_acl_association" "app-subnet-nacl" {
   network_acl_id = aws_network_acl.app_nacl.id
-  subnet_id      = aws_subnet.koda_subnet.id
+  subnet_id      = aws_subnet.koda_subnet_app.id
 }
 
 # Create NACLs for DB
@@ -185,7 +185,7 @@ resource "aws_network_acl" "db_nacl" {
   }
 }
 
-# Subnet association to nacl-web
+# Subnet association to nacl-db
 resource "aws_network_acl_association" "db-subnet-nacl" {
   network_acl_id = aws_network_acl.app_nacl.id
   subnet_id      = aws_subnet.koda_subnet_database.id
