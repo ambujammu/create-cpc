@@ -187,6 +187,6 @@ resource "aws_network_acl" "db_nacl" {
 
 # Subnet association to nacl-db
 resource "aws_network_acl_association" "db-subnet-nacl" {
-  network_acl_id = aws_network_acl.app_nacl.id
+  network_acl_id = aws_network_acl.db_nacl.id
   subnet_id      = aws_subnet.koda_subnet_database.id
 }
