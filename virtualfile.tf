@@ -211,7 +211,7 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_sg_web_ssh" {
   to_port           = 22
 }
 
-# app security group rule - HTTP
+# web security group rule - HTTP
 resource "aws_vpc_security_group_ingress_rule" "tcs_sg_web_http" {
   security_group_id = aws_security_group.tcs_sg_web.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -240,7 +240,7 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_app_sg_ssh" {
   to_port           = 22
 }
 
-# db security group rule - HTTP
+# app security group rule - HTTP
 resource "aws_vpc_security_group_ingress_rule" "tcs_app_sg_8080" {
   security_group_id = aws_security_group.tcs_app_sg.id
   cidr_ipv4         = "0.0.0.0/0"
