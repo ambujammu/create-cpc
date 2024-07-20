@@ -43,3 +43,12 @@ resource "aws_subnet" "koda_subnet_app" {
     Name = "koda-subnet-app"
   }
 }
+
+# Koda internet gateway
+resource "aws_internet_gateway" "koda-gw" {
+  vpc_id = aws_vpc.koda_vpc.id
+
+  tags = {
+    Name = "koda-ig"
+  }
+}
