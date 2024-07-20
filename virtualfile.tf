@@ -219,3 +219,32 @@ resource "aws_vpc_security_group_ingress_rule" "koda_sg_web_http" {
   ip_protocol       = "tcp"
   to_port           = 80
 }
+
+# app security group rule
+resource "aws_security_group" "koda_app_sg" {
+  name        = "koda_app_sg"
+  description = "Allow SSH & 8080 traffic"
+  vpc_id      = aws_vpc.koda_vpc.id
+
+  tags = {
+    Name = "Koda-app-sg-firewall"
+  }
+}
+
+# app security group rule - SSH
+resource "aws_vpc_security_group_ingress_rule" "koda_app_sg_ssh" {
+  security_group_id = aws_security_group.koda_app_sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+# Web security group rule - HTTP
+resource "aws_vpc_security_group_ingress_rule" "koda_app_sg_8080" {
+  security_group_id = aws_security_group.koda_app_sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 8080
+  ip_protocol       = "tcp"
+  to_port           = 8080
+}
