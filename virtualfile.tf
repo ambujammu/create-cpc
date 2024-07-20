@@ -88,6 +88,6 @@ resource "aws_route_table_association" "public-app-route" {
 
 # Map private subnet with public route
 resource "aws_route_table_association" "public-database-route" {
-  subnet_id      = aws_subnet.koda_subnet_databaset.id
+  subnet_id      = aws_subnet.koda_subnet_database.id
   route_table_id = aws_route_table.koda-route-private.id
 }
