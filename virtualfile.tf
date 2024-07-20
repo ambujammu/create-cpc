@@ -250,8 +250,8 @@ resource "aws_vpc_security_group_ingress_rule" "koda_app_sg_8080" {
 }
 
 # DB security group
-resource "aws_security_group" "koda_sg_db" {
-  name        = "koda_sg_db"
+resource "aws_security_group" "koda_db_sg" {
+  name        = "koda_db_sg"
   description = "Allow SSH & Postgres traffic"
   vpc_id      = aws_vpc.koda_vpc.id
 
@@ -261,8 +261,8 @@ resource "aws_security_group" "koda_sg_db" {
 }
 
 # DB security group rule - SSH
-resource "aws_vpc_security_group_ingress_rule" "koda_sg_db_ssh" {
-  security_group_id = aws_security_group.koda_sg_db.id
+resource "aws_vpc_security_group_ingress_rule" "koda_db_sg_ssh" {
+  security_group_id = aws_security_group.koda_db_sg.id
   cidr_ipv4         = "10.0.0.0/16"
   from_port         = 22
   ip_protocol       = "tcp"
@@ -270,8 +270,8 @@ resource "aws_vpc_security_group_ingress_rule" "koda_sg_db_ssh" {
 }
 
 # DB security group rule - Postgres
-resource "aws_vpc_security_group_ingress_rule" "koda_sg_db_postgres" {
-  security_group_id = aws_security_group.koda_sg_db.id
+resource "aws_vpc_security_group_ingress_rule" "koda_db_sg_postgres" {
+  security_group_id = aws_security_group.koda_db_sg.id
   cidr_ipv4         = "10.0.0.0/16"
   from_port         = 5432
   ip_protocol       = "tcp"
