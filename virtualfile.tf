@@ -7,3 +7,14 @@ resource "aws_vpc" "koda_vpc" {
     Name = "koda-vpc"
   }
 }
+
+# Creating Subnet for web server
+resource "aws_subnet" "koda_subnet" {
+  vpc_id     = aws_vpc.koda_vpc.id
+  cidr_block = "10.0.1.0/24"
+  availability_zone = "us-west-2a"
+
+  tags = {
+    Name = "koda-subnet"
+  }
+}
