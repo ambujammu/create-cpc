@@ -191,7 +191,7 @@ resource "aws_network_acl_association" "db-subnet-nacl" {
   subnet_id      = aws_subnet.koda_subnet_database.id
 }
 
-Web security group rule
+# Web security group rule
 resource "aws_security_group" "koda_sg_web" {
   name        = "koda_sg_web"
   description = "Allow SSH & HTTP traffic"
@@ -202,7 +202,7 @@ resource "aws_security_group" "koda_sg_web" {
   }
 }
 
-Web security group rule - SSH
+# Web security group rule - SSH
 resource "aws_vpc_security_group_ingress_rule" "koda_sg_web_ssh" {
   security_group_id = aws_security_group.koda_sg_web.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -211,7 +211,7 @@ resource "aws_vpc_security_group_ingress_rule" "koda_sg_web_ssh" {
   to_port           = 22
 }
 
-Web security group rule - HTTP
+# Web security group rule - HTTP
 resource "aws_vpc_security_group_ingress_rule" "koda_sg_web_http" {
   security_group_id = aws_security_group.koda_sg_web.id
   cidr_ipv4         = "0.0.0.0/0"
