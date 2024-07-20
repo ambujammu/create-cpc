@@ -118,3 +118,42 @@ resource "aws_network_acl" "web_nacl" {
     Name = "koda-web-nacl"
   }
 }
+
+# Subnet association to nacl-web
+resource "aws_network_acl_association" "web-subnet-nacl" {
+  network_acl_id = aws_network_acl.web_nacl.id
+  subnet_id      = aws_subnet.koda_subnet.id
+}
+
+# Create NACLs for app
+resource "aws_network_acl" "app_nacl" {
+  vpc_id = aws_vpc.koda_vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "koda-app-nacl"
+  }
+}
+
+# Subnet association to nacl-web
+resource "aws_network_acl_association" "app-subnet-nacl" {
+  network_acl_id = aws_network_acl.app_nacl.id
+  subnet_id      = aws_subnet.koda_subnet.id
+}
