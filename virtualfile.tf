@@ -269,8 +269,8 @@ resource "aws_vpc_security_group_ingress_rule" "koda_db_sg_ssh" {
   to_port           = 22
 }
 
-# Web security group rule - HTTP
-resource "aws_vpc_security_group_ingress_rule" "koda_db_sg_8080" {
+# Web security group rule - Postgres
+resource "aws_vpc_security_group_ingress_rule" "koda_db_sg_postgres" {
   security_group_id = aws_security_group.koda_db_sg.id
   cidr_ipv4         = "10.0.0.0/16"
   from_port         = 5342
