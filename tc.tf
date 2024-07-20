@@ -211,7 +211,7 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_sg_web_ssh" {
   to_port           = 22
 }
 
-# app security group rule - HTTP
+# web security group rule - HTTP
 resource "aws_vpc_security_group_ingress_rule" "tcs_sg_web_http" {
   security_group_id = aws_security_group.tcs_sg_web.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -223,7 +223,7 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_sg_web_http" {
 # app security group rule
 resource "aws_security_group" "tcs_app_sg" {
   name        = "tcs_app_sg"
-  description = "Allow SSH & 8080 traffic"
+  description = "Allow SSH & 3000 traffic"
   vpc_id      = aws_vpc.tcs_vpc.id
 
   tags = {
@@ -240,19 +240,19 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_app_sg_ssh" {
   to_port           = 22
 }
 
-# db security group rule - HTTP
-resource "aws_vpc_security_group_ingress_rule" "tcs_app_sg_8080" {
+# app security group rule - 3000
+resource "aws_vpc_security_group_ingress_rule" "tcs_app_sg_3000" {
   security_group_id = aws_security_group.tcs_app_sg.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 8080
+  from_port         = 3000
   ip_protocol       = "tcp"
-  to_port           = 8080
+  to_port           = 3000
 }
 
 # db security group rule
 resource "aws_security_group" "tcs_db_sg" {
   name        = "tcs_db_sg"
-  description = "Allow SSH & Postgres traffic"
+  description = "Allow SSH & Mysql traffic"
   vpc_id      = aws_vpc.tcs_vpc.id
 
   tags = {
@@ -269,11 +269,11 @@ resource "aws_vpc_security_group_ingress_rule" "tcs_db_sg_ssh" {
   to_port           = 22
 }
 
-# db security group rule - Postgres
-resource "aws_vpc_security_group_ingress_rule" "tcs_db_sg_postgres" {
+# db security group rule - Mysql
+resource "aws_vpc_security_group_ingress_rule" "tcs_db_sg_mysql" {
   security_group_id = aws_security_group.tcs_db_sg.id
   cidr_ipv4         = "10.0.0.0/16"
-  from_port         = 5342
+  from_port         = 3306
   ip_protocol       = "tcp"
-  to_port           = 5432
+  to_port           = 3306
 }
