@@ -1,5 +1,5 @@
 # EC2 Instance
-resource "aws_instance" "tcs_web_server" {
+resource "aws_instance" "terraform-1" {
   ami           = "ami-ami-0aff18ec83b712f05"
   instance_type = "t2.micro"
   key_name = "papu"
