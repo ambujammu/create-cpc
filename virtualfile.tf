@@ -66,3 +66,12 @@ resource "aws_route_table" "koda-route1" {
     Name = "koda-route1"
   }
 }
+
+#Creating Private Route Table
+resource "aws_route_table" "koda-route-private" {
+  vpc_id = aws_vpc.koda_vpc.id
+
+  tags = {
+    Name = "koda-route1-private"
+  }
+}
