@@ -31,3 +31,15 @@ resource "aws_subnet" "koda_subnet_database" {
     Name = "koda-subnet-databse"
   }
 }
+
+# Creating Subnet for application server
+resource "aws_subnet" "koda_subnet_app" {
+  vpc_id     = aws_vpc.koda_vpc.id
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "us-west-2c"
+  map_public_ip_on_launch = "true"
+
+  tags = {
+    Name = "koda-subnet-app"
+  }
+}
